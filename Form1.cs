@@ -74,7 +74,7 @@ namespace ScreenShot
                 edit.SetImage(bmp);
                 edit.Show();
 
-                // Закрываем текущую форму
+                // Скрываем текущую форму
                 this.Hide();
             }
             _selection = new Rectangle(0, 0, 0, 0);
