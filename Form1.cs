@@ -69,7 +69,6 @@ namespace ScreenShot
                 Clipboard.SetImage(bmp);
 
                 // Открываем новую форму и передаем ей изображение
-
                 Edit edit = new Edit();
                 edit.SetImage(bmp);
                 edit.Show();

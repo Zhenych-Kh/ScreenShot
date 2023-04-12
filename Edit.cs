@@ -30,10 +30,6 @@ namespace ScreenShot
             pictureBox1.Image = image;
         }
 
-        private void button3_Click(object sender, EventArgs e)
-        {
-            Application.Exit();
-        }
 
         private void button1_Click(object sender, EventArgs e)
         {
@@ -75,6 +71,10 @@ namespace ScreenShot
         private void button4_Click(object sender, EventArgs e)
         {
             this.WindowState = FormWindowState.Minimized;
+        }
+        private void button3_Click(object sender, EventArgs e)
+        {
+            Application.Exit();
         }
     }
 }
