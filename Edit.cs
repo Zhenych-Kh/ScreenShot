@@ -3,12 +3,14 @@ using System.Diagnostics;
 using System.Drawing;
 using System.Runtime.InteropServices;
 using System.Windows.Forms;
-using System.Windows.Forms.DataVisualization.Charting;
 
 namespace ScreenShot
 {
     public partial class Edit : Form
     {
+        private bool isDragging = false;
+        private Point lastCursor;
+        private Point lastForm;
         public Edit()
         {
             InitializeComponent();
@@ -74,6 +76,10 @@ namespace ScreenShot
         private void Edit_Load(object sender, EventArgs e)
         {
             PictureBox_Border(pictureBox1);
+            // Подписываемся на события мыши
+            this.MouseDown += Edit_MouseDown;
+            this.MouseMove += Edit_MouseMove;
+            this.MouseUp += Edit_MouseUp;
         }
         
         private void PictureBox_Border(PictureBox pictureBox)
@@ -86,6 +92,36 @@ namespace ScreenShot
                 g.DrawRectangle(pen, picBox.DisplayRectangle.X, picBox.DisplayRectangle.Y,
                     picBox.DisplayRectangle.Width - 2, picBox.DisplayRectangle.Height - 2);
             };
+        }
+
+        private void Edit_MouseDown(object sender, MouseEventArgs e)
+        {
+            if (e.Button == MouseButtons.Left)
+            {
+                isDragging = true;
+                lastCursor = Cursor.Position;
+                lastForm = this.Location;
+            }
+        }
+
+        private void Edit_MouseMove(object sender, MouseEventArgs e)
+        {
+            if (isDragging)
+            {
+                {
+                    int deltaX = Cursor.Position.X - lastCursor.X;
+                    int deltaY = Cursor.Position.Y - lastCursor.Y;
+                    this.Location = new Point(lastForm.X + deltaX, lastForm.Y + deltaY);
+                }
+            }
+        }
+
+        private void Edit_MouseUp(object sender, MouseEventArgs e)
+        {
+            if (e.Button == MouseButtons.Left)
+            {
+                isDragging = false;
+            }
         }
     }
 }

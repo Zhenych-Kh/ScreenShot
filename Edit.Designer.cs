@@ -118,6 +118,9 @@
             this.Name = "Edit";
             this.Text = "Edit";
             this.Load += new System.EventHandler(this.Edit_Load);
+            this.MouseDown += new System.Windows.Forms.MouseEventHandler(this.Edit_MouseDown);
+            this.MouseMove += new System.Windows.Forms.MouseEventHandler(this.Edit_MouseMove);
+            this.MouseUp += new System.Windows.Forms.MouseEventHandler(this.Edit_MouseUp);
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             this.ResumeLayout(false);
 
