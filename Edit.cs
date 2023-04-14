@@ -1,8 +1,10 @@
-﻿using System;
+﻿using SkreenShot.EditFormMove;
+using System;
 using System.Diagnostics;
 using System.Drawing;
 using System.Runtime.InteropServices;
 using System.Windows.Forms;
+using System.Windows.Forms.DataVisualization.Charting;
 
 namespace ScreenShot
 {
@@ -68,6 +70,23 @@ namespace ScreenShot
         private void button3_Click(object sender, EventArgs e)
         {
             Application.Exit();
+        }
+
+        private void Edit_Load(object sender, EventArgs e)
+        {
+            PictureBox_Border(pictureBox1);
+        }
+        
+        private void PictureBox_Border(PictureBox pictureBox)
+        {
+            pictureBox1.Paint += (sender, e) =>
+            {
+                var picBox = sender as PictureBox;
+                var g = e.Graphics;
+                var pen = new Pen(Color.DarkGray, 3); // задаем цвет и толщину рамки
+                g.DrawRectangle(pen, picBox.DisplayRectangle.X, picBox.DisplayRectangle.Y,
+                    picBox.DisplayRectangle.Width - 2, picBox.DisplayRectangle.Height - 2);
+            };
         }
     }
 }
